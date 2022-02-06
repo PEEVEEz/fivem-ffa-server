@@ -9,12 +9,17 @@ AddEventHandler('playerDropped', function (reason)
     Core.Players[src] = nil
 end)
 
--- AddEventHandler('playerConnecting',function(playerName, setKickReason, deferrals)
---     local src = source
---     local _identifiers = Core.Functions.PlayerIdentifiers(src)
---     print()
---     deferrals.defer()
---     deferrals.update("Tarkistetaan tietojasi....")
---     Wait(1200)
---     deferrals.done()
--- end)
+AddEventHandler('playerConnecting',function(playerName, setKickReason, deferrals)
+    local src = source
+    local _identifiers = Core.Functions.PlayerIdentifiers(src)
+    print()
+    deferrals.defer()
+    deferrals.update("Tarkistetaan tietojasi....")
+    Wait(1200)
+    for k,v in pairs(cfg.banlist) do
+        if v["license"] == _identifiers["license"] or v["discord"] == _identifiers["discord"] then
+            deferrals.done("Sinulla on porttikielto palvelimelle. Syy: "..v.reason)
+        end
+    end
+    deferrals.done()
+end)

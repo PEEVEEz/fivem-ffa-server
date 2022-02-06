@@ -1,0 +1,5 @@
+
+
+RegisterCommand('ban', function()
+    
+end)
