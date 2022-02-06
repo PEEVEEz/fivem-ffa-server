@@ -19,9 +19,8 @@ CreateThread(function()
     TriggerServerEvent('core:getLobbys')
     Wait(600)
     while true do
-        Wait(5)
+        Wait(3)
         local wait = true
-
         if Core.Player.OnLobby then
             local playerPed = PlayerPedId()
             local playerCoords = GetEntityCoords(playerPed)
@@ -30,11 +29,15 @@ CreateThread(function()
     
                 if distance < 2 then
                     wait = false
-                    Core.Functions.Text3D(v.coords, "[E] "..k.." | "..#v.players.."/10 pelaajaa | "..v.alue)
+                    Core.Functions.Text3D(v.coords, "[E] "..k.." | "..#v.players.."/"..cfg.max_players_lobby.." pelaajaa | "..v.alue)
 
-                    if IsControlJustReleased(0, 38) then
-                        Core.Player.OnLobby = false
-                        TriggerServerEvent('core:joinLobby', k)
+                    if #v.players < cfg.max_players_lobby then
+                        if IsControlJustReleased(0, 38) then
+                            Core.Player.OnLobby = false
+                            TriggerServerEvent('core:joinLobby', k)
+                        end
+                    else
+                        print("Täynnä")
                     end
                 end
             end
