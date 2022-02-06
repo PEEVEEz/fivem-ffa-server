@@ -3,11 +3,8 @@ Core.Functions.LoadData = function(cb)
 	local resourceName = GetCurrentResourceName()
 	local Banlist = json.decode(LoadResourceFile(resourceName, dataPath.."banlist.json"))
 
-
 	if BanList ~= nil then
 		cfg.banlist = Banlist
-	else
-		cfg.banlist = {}
 	end
 
 	if Banlist ~= nil then
