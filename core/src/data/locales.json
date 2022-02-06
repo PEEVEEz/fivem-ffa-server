@@ -1,0 +1,7 @@
+{
+    "fi": {
+        "LicenseNotFound": "Licenssiä ei löytynyt",
+        "Banned": "Sinulla on porttikielto palvelimelle!",
+        "NOAL": "Sinulla ei ole allowlistiä"
+    }
+}

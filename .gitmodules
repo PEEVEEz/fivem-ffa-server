@@ -1,3 +1,0 @@
-[submodule "oxmysql"]
-	path = oxmysql
-	url = https://github.com/overextended/oxmysql.git

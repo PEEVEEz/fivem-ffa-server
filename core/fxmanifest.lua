@@ -1,11 +1,23 @@
 fx_version 'cerulean'
-game 'gta5'
-author 'Peevee'
+game { 'gta5' }
+version '0.0.1'
 
 server_scripts {
-	'server/*.lua'
+    'src/server/main.lua',
+    'src/server/commands.lua',
+    'src/server/functions/*.lua',
+    'src/server/events/*.lua',
+    'src/server/commands/*.lua',
 }
 
 client_scripts {
-	'client/*.lua'
+    'src/client/main.lua',
+    'src/client/functions/*.lua',
+    'src/client/commands/*.lua',
+    'src/client/events/*.lua'
+}
+
+shared_scripts {
+    'src/shared/*.lua',
+    'src/config.lua'
 }
