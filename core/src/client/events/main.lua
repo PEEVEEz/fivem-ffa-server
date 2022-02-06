@@ -4,3 +4,5 @@ RegisterNetEvent('core:updateData', function(lobby, data)
     else Core.Lobbys[lobby] = data end
     print("Data updated1")
 end)
+
+--karpo
