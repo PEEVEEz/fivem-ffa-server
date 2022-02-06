@@ -12,7 +12,7 @@ AddEventHandler('core:SpawnPlayer', function(player)
         x = p.x,
         y = p.y,
         z = p.z,
-        heading = p.z,
+        heading = p.h,
         model = `a_m_m_soucent_04`, --DEFAULT MODELI TÄLLÄ HETKELLÄ
         skipFade = false
     }, function()
