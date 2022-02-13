@@ -1,0 +1,6 @@
+[submodule "recoil"]
+	path = recoil
+	url = https://github.com/jonezkti/recoil.git
+[submodule "oxmysql"]
+	path = oxmysql
+	url = https://github.com/overextended/oxmysql.git

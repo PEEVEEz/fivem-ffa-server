@@ -1,0 +1,38 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+
+.map_vote {
+    background-color: #1b2127;
+    position: fixed;
+    top: 30%;
+    left: 1%;
+    border-radius: 0.2rem;
+    width: 17rem;
+}
+
+.map_vote h2 {
+    padding: 0 0 0.2rem 0.6rem;
+    border-bottom: 1px solid rgb(209, 209, 209);
+    color: #fff;
+}
+
+.map_vote .maps {
+   padding: 0.2rem 0.6rem;
+}
+
+.map_vote .map {
+    background-color: #21272e;
+    color: #fff;
+    margin-top: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
