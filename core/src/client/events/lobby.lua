@@ -1,7 +1,7 @@
 RegisterNetEvent('core:cl:lobby:update', function(lobby, data)
     if not lobby then 
         Core.Data.Lobbys = data.Lobbys
-        Core.Data.Areas = data.areas
+        Core.Data.Areas = data.Areas
     else Core.Data.Lobbys[lobby] = data end
     print("Data updated")
 end)

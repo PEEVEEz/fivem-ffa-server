@@ -72,5 +72,5 @@ RegisterCommand('leave', function()
 end)
 
 RegisterCommand("die", function()
-    SetEntityHealt(PlayerPedId(), 0)
+    SetEntityHealth(PlayerPedId(), 0)
 end)

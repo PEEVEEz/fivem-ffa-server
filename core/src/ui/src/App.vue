@@ -57,7 +57,6 @@ export default {
                             body: JSON.stringify({ map: selectedMap.name })
                         })
                         
-                        console.log(JSON.stringify(this.map_vote.maps[keyN - 1]));
                         window.removeEventListener("keydown", this.eventListeners.mapVote)
                     }
                 };
