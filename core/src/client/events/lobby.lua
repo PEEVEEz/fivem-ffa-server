@@ -9,25 +9,22 @@ end)
 RegisterNetEvent('core:cl:lobby:join', function(lobby, coords)
     local playerPed = PlayerPedId()
     Core.Player.addWeapons(lobby)
-    SetEntityCoords(playerPed, coords.x, coords.y, coords.z)
-    SetEntityHeading(playerPed, 88.73)
-    Core.Player.Lobby = lobby
-    Core.Functions.EnableFire(true)
+    Core.Player.SpawnCam(false)
+    Core.Player.SetCoords(coords.x, coords.y, coords.z, 88.73)
+    Core.UI.Open(false)
+    Core.Player.onLobby = true
 end)
 
 RegisterNetEvent('core:cl:lobby:changeArea', function(newArea)
     Core.Functions.Notify("Alue vaihdettu!")
-    local playerPed = PlayerPedId()
-    SetEntityCoords(playerPed, newArea.x, newArea.y, newArea.z)
+    Core.Player.SetCoords(newArea.x, newArea.y, newArea.z, 88.73)
 end)
 
-RegisterNetEvent('core:cl:lobby:leave', function(coords)
-    if Core.Player.Lobby == "spawn" then return end
-    local playerPed = PlayerPedId()
+RegisterNetEvent('core:cl:lobby:leave', function()
+    if not Core.Player.onLobby then return end
     Core.Player.removeAllWeapons()
-    SetEntityCoords(playerPed, coords.x, coords.y, coords.z)
-    Core.Player.Lobby = "spawn"
-    Core.Functions.EnableFire(false)
+    Core.Player.onLobby = false
+    TriggerEvent('core:cl:player:default_spawn')
 end)
 
 RegisterNetEvent('core:cl:lobby:startVote', function(maps)
@@ -52,11 +49,17 @@ RegisterNetEvent('core:cl:lobby:endVote', function()
 	}))
 end)
 
+RegisterNUICallback("join_lobby", function(data, cb)
+    local lobby = data.lobby
+    if lobby then
+        TriggerServerEvent('core:sv:lobby:join', lobby)
+    end
+end)
+
 
 RegisterNUICallback('vote_change_map', function(data, cb)
      local map = data.map
      if not map then cb("NT") end
      SetNuiFocus(false, false);
-     print(map)
-     TriggerServerEvent('core:sv:lobby:vote_map', Core.Player.Lobby, map)
+     TriggerServerEvent('core:sv:lobby:vote_map', map)
 end)

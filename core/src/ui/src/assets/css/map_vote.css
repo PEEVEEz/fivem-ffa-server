@@ -1,0 +1,28 @@
+.map_vote {
+  background-color: #000000b4;
+  border-radius: 0.2rem;
+  position: fixed;
+  top: 30%;
+  left: 1%;
+  width: 17rem;
+}
+
+.map_vote h2 {
+  padding: 0 0 0.2rem 0.6rem;
+  border-bottom: 1px solid #ffffff33;
+  color: #fff;
+}
+
+.map_vote .maps {
+  padding: 0.2rem 0.6rem;
+}
+
+.map_vote .map {
+  border: 1px solid #ffffff33;
+  border-radius: 0.2rem;
+  color: #fff;
+  margin-top: 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

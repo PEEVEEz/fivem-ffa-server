@@ -1,5 +1,4 @@
 
-
 Core.Player.addWeapons = function(area)
     local playerPed = PlayerPedId()
     local guns = Core.Data.Lobbys[area].guns
@@ -13,7 +12,21 @@ Core.Player.removeAllWeapons = function()
     RemoveAllPedWeapons(playerPed)
 end
 
-Core.Functions.EnableFire = function(bool)
-    SetCanAttackFriendly(playerPed, bool, false)
-    NetworkSetFriendlyFireOption(bool)
+Core.Player.SetCoords = function(x,y,z,h)
+    local playerPed = PlayerPedId()
+    SetEntityCoords(playerPed, x, y, z)
+    SetEntityHeading(playerPed, h)
+end
+
+Core.Player.SpawnCam = function(bool)
+    if bool then
+        local coords = c_cfg.default_spawn
+        Core.Player.Camera = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", coords.x + 0.2, coords.y + 3.0, coords.z, 0.0,0.0, c_cfg.default_spawn_h / 2, 50.0, false, 0)
+        SetCamActive(Core.Player.Camera, true)
+        RenderScriptCams(true, false, 1, true, true)
+    else
+        SetCamActive(Core.Player.Camera, false)
+        DestroyCam(Core.Player.Camera, true)
+        RenderScriptCams(false, false, 1, true, true)
+    end
 end

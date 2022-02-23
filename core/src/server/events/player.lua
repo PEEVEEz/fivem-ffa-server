@@ -11,7 +11,7 @@ RegisterNetEvent('core:sv:player:joined', function()
 
     SetPlayerRoutingBucket(src, 0) --set player default lobby
     TriggerClientEvent('core:cl:lobby:update', src, nil, { Lobbys = s_cfg.lobbys, Areas = s_cfg.areas })
-    TriggerClientEvent('core:cl:player:spawn', src, s_cfg.default_spawn)
+    TriggerClientEvent('core:cl:player:default_spawn', src)
 end)
 
 AddEventHandler('playerDropped', function(reason)

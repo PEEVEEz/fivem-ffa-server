@@ -1,38 +1,57 @@
-
+@import "./map_vote.css";
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-
-
-.map_vote {
-    background-color: #1b2127;
-    position: fixed;
-    top: 30%;
-    left: 1%;
-    border-radius: 0.2rem;
-    width: 17rem;
+.main {
+  padding: 0.2rem;
+  margin: 4rem auto;
+  max-width: 70rem;
+  color: #eaf0f5;
 }
 
-.map_vote h2 {
-    padding: 0 0 0.2rem 0.6rem;
-    border-bottom: 1px solid rgb(209, 209, 209);
-    color: #fff;
+.main .loaded {
+  display: flex;
+  justify-content: space-between;
 }
 
-.map_vote .maps {
-   padding: 0.2rem 0.6rem;
+.lobbys,
+.user_data,
+.peds {
+  padding: 0.2rem;
+  width: 20rem;
+  background-color: #000000b4;
+  border-radius: 0.2rem;
 }
 
-.map_vote .map {
-    background-color: #21272e;
-    color: #fff;
-    margin-top: 0.2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.main .lobbys .lobby,
+.main .peds .ped,
+.main .user_data p {
+  border: 1px solid #ffffff33;
+  border-radius: 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0 0.1rem 0;
+  padding: 0.2rem;
+}
+
+.main .lobbys .lobby button {
+  width: 4rem;
+  height: 2rem;
+  margin-right: 0.4rem;
+  border: none;
+  border-radius: 0.2rem;
+  color: #ffffff;
+}
+
+.main .peds {
+  margin-top: 0.6rem;
+}
+
+.main .peds .ped {
+  cursor: pointer;
 }

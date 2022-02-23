@@ -16,11 +16,8 @@ s_cfg.areas = {
     { name = "pohjonen", coords = vector3(-203.28, 6298.44, 31.49) }
 }
 
-s_cfg.default_spawn = vector3(1647.96, 2600.29, 45.56) --Routing ID = 0
-
 s_cfg.lobbys = {
-    ["Pistooli"] = {
-        coords = vector3(1633.18, 2604.81, 45.46),
+    ["Pistol"] = {
         area = "grove street",
         players = {},
         routingID = 1,
@@ -33,7 +30,6 @@ s_cfg.lobbys = {
         }
     },
     ["Smg"] = {
-        coords = vector3(1633.18, 2598.62, 45.46),
         area = "satama",
         players = {},
         routingID = 2,
@@ -44,8 +40,7 @@ s_cfg.lobbys = {
             `WEAPON_COMBATPDW`
         }
     },
-    ["Assault Rifles"] = {
-        coords = vector3(1633.18, 2592.51, 45.46),
+    ["Assault Rifle"] = {
         area = "pohjonen",
         players = {},
         routingID = 3,
@@ -53,6 +48,17 @@ s_cfg.lobbys = {
         guns = {
             `WEAPON_ASSAULTRIFLE`,
             `WEAPON_CARBINERIFLE`
+        }
+    },
+    ["Shotgun"] = {
+        area = "pohjonen",
+        players = {},
+        routingID = 3,
+        mapVote = {},
+        guns = {
+            `weapon_pumpshotgun`,
+            `weapon_musket`,
+            `weapon_combatshotgun`
         }
     }
 }
