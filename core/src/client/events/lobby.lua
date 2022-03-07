@@ -10,6 +10,8 @@ RegisterNetEvent('core:cl:lobby:join', function(lobby, coords)
     local playerPed = PlayerPedId()
     Core.Player.addWeapons(lobby)
     Core.Player.SpawnCam(false)
+
+    --TODO: Randomize coords
     Core.Player.SetCoords(coords.x, coords.y, coords.z, 88.73)
     Core.UI.Open(false)
     Core.Player.onLobby = true
@@ -17,6 +19,8 @@ end)
 
 RegisterNetEvent('core:cl:lobby:changeArea', function(newArea)
     Core.Functions.Notify("Alue vaihdettu!")
+
+    --TODO: Randomize coords
     Core.Player.SetCoords(newArea.x, newArea.y, newArea.z, 88.73)
 end)
 
@@ -27,13 +31,14 @@ RegisterNetEvent('core:cl:lobby:leave', function()
     TriggerEvent('core:cl:player:default_spawn')
 end)
 
-RegisterNetEvent('core:cl:lobby:startVote', function(maps)
+RegisterNetEvent('core:cl:lobby:startVote', function(mapVoteTimer)
 	SetNuiFocus(true, false);
 	SendNuiMessage(json.encode({
 		action = "map_vote",
 		data = {
 			on = true,
-			maps = maps
+			maps = Core.Data.Areas,
+            timer = mapVoteTimer
 		}
 	}))
 end)
@@ -51,15 +56,14 @@ end)
 
 RegisterNUICallback("join_lobby", function(data, cb)
     local lobby = data.lobby
-    if lobby then
-        TriggerServerEvent('core:sv:lobby:join', lobby)
-    end
+    if not lobby then return end
+    TriggerServerEvent('core:sv:lobby:join', lobby)
 end)
 
 
 RegisterNUICallback('vote_change_map', function(data, cb)
      local map = data.map
-     if not map then cb("NT") end
      SetNuiFocus(false, false);
+     if not map then return end
      TriggerServerEvent('core:sv:lobby:vote_map', map)
 end)

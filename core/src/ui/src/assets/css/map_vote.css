@@ -7,12 +7,6 @@
   width: 17rem;
 }
 
-.map_vote h2 {
-  padding: 0 0 0.2rem 0.6rem;
-  border-bottom: 1px solid #ffffff33;
-  color: #fff;
-}
-
 .map_vote .maps {
   padding: 0.2rem 0.6rem;
 }
@@ -25,4 +19,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.map_vote .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 0.6rem 0.2rem 0.6rem;
+  border-bottom: 1px solid #ffffff33;
+
+  color: #fff;
 }

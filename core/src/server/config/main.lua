@@ -4,11 +4,11 @@ s_cfg.ban_list = {}
 
 s_cfg.webhooks = {
     join = "",
-    leave = "",
-    mapchanges = "" 
+    leave = ""
 }
 
-s_cfg.mapchangetime = 0.5 --minutes
+s_cfg.map_vote_start_timer = 10 * 60000
+s_cfg.map_vote_timer = 1 * 60000
 
 s_cfg.areas = {
     { name = "grove street", coords = vector3(101.54, -1871.81, 24.16) },

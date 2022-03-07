@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="show" class="main">
-      <div class="loaded" v-if="lobbys.length !== 0">
+      <div class="loaded" v-if="lobbys.length !== 0 && peds.length !== 0">
         <div id="left">
           <div class="lobbys">
             <h2>Lobbys</h2>
@@ -13,7 +13,7 @@
               </div>
               <button
                 @click="join_lobby(k)"
-                v-bind:style="
+                :style="
                   v.players.length == 10
                     ? 'background-color: #ae2e2e;'
                     : 'background-color: #35b335;'
@@ -37,9 +37,7 @@
             <h2>Peds</h2>
             <div>
               <div
-                v-bind:style="
-                  selected_ped == k ? 'background-color: #35b335;' : ''
-                "
+                :style="selected_ped == k ? 'background-color: #35b335;' : ''"
                 @click="select_ped(k)"
                 v-for="(v, k) in peds"
                 class="ped"
@@ -55,11 +53,14 @@
     </div>
 
     <div v-if="map_vote.on" class="map_vote">
-      <h2>Map vote</h2>
+      <div class="head">
+        <h2>Map vote</h2>
+        <h2>{{ map_vote.timer.amount }}</h2>
+      </div>
 
       <div class="maps">
-        <div class="map" v-for="(map, i) in map_vote.maps" v-bind:key="i">
-          <div v-bind:style="map.selected ? 'color: green;' : 'color: #fff;'">
+        <div class="map" v-for="(map, i) in map_vote.maps" :key="i">
+          <div :style="map?.selected ? 'color: green;' : 'color: #fff;'">
             {{ i + 1 }}. {{ map.name }}
           </div>
         </div>
@@ -81,6 +82,10 @@ export default {
       map_vote: {
         on: false,
         maps: [],
+        timer: {
+          interval: () => {},
+          amount: 0,
+        },
       },
     };
   },
@@ -101,15 +106,24 @@ export default {
 
       switch (data.action) {
         case "map_vote": {
-          this.map_vote.on = !this.map_vote.on;
-          this.map_vote.maps = data.data.maps || [];
+          this.map_vote.on = data.data.on;
+          if (data.data.maps) this.map_vote.maps = data.data.maps;
+
+          if (this.map_vote.on) {
+            this.map_vote.timer.amount = (data.data.timer / 1000).toFixed(0);
+
+            this.map_vote.timer.interval = setInterval(() => {
+              this.map_vote.timer.amount = this.map_vote.timer.amount - 1;
+              if (this.map_vote.timer.amount == 0) {
+                clearInterval(this.map_vote.timer.interval);
+              }
+            }, 1000);
+          }
 
           this.eventListeners.mapVote = ({ key }) => {
-            let keyN = parseInt(key);
-
-            if (keyN && this.map_vote.maps.length >= keyN) {
-              let selectedMap = this.map_vote.maps[keyN - 1];
-              this.map_vote.maps[keyN - 1].selected = true;
+            if (key && this.map_vote.maps.length >= key) {
+              let selectedMap = this.map_vote.maps[key - 1];
+              this.map_vote.maps[key - 1].selected = true;
 
               fetch(`https://core/vote_change_map`, {
                 method: "POST",
@@ -128,10 +142,9 @@ export default {
         }
         case "show_ui": {
           this.show = data.show;
-          if (data.data.lobbys && data.data.peds) {
-            this.lobbys = data.data.lobbys;
-            this.peds = data.data.peds;
-          }
+          if (!data.data.lobbys && !data.data.peds) return;
+          this.lobbys = data.data.lobbys;
+          this.peds = data.data.peds;
           break;
         }
       }
