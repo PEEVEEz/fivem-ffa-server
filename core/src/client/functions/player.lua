@@ -21,7 +21,7 @@ end
 Core.Player.SpawnCam = function(bool)
     if bool then
         local coords = c_cfg.default_spawn
-        Core.Player.Camera = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", coords.x + 0.2, coords.y + 3.0, coords.z, 0.0,0.0, c_cfg.default_spawn_h / 2, 50.0, false, 0)
+        Core.Player.Camera = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", coords.x + 0.2, coords.y + 3.0, coords.z, 0.0,0.0, coords.w / 2, 50.0, false, 0)
         SetCamActive(Core.Player.Camera, true)
         RenderScriptCams(true, false, 1, true, true)
     else

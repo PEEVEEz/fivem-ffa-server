@@ -6,7 +6,7 @@ RegisterNetEvent('core:cl:player:default_spawn', function(data)
         x = coords.x,
         y = coords.y,
         z = coords.z,
-        heading = c_cfg.default_spawn_h,
+        heading = coords.w,
         model = `a_m_m_soucent_04`, --DEFAULT MODELI TÄLLÄ HETKELLÄ
         skipFade = false
     }, function()
