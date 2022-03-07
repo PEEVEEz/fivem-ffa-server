@@ -2,10 +2,12 @@ Core.Functions.LoadData = function(cb)
 	local dataPath = "./src/data/"
 	local resourceName = GetCurrentResourceName()
 	local Banlist = json.decode(LoadResourceFile(resourceName, dataPath.."banlist.json"))
+	local Admins = json.decode(LoadResourceFile(resourceName, dataPath.."admins.json"))
 	local OneSync = GetConvar('onesync_enabled', false) == 'true'
 	
-	if Banlist and OneSync then
+	if Banlist and Admins and OneSync then
 		s_cfg.ban_list = Banlist
+		s_cfg.admins = Admins
 		cb(true)
 	else
 		cb(false)

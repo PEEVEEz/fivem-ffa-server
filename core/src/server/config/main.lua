@@ -1,5 +1,6 @@
 s_cfg = {}
 
+s_cfg.admins = {}
 s_cfg.ban_list = {}
 
 s_cfg.webhooks = {

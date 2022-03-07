@@ -6,7 +6,19 @@ RegisterNetEvent('core:sv:player:joined', function()
         source = src,
         name = playerName,
         identifiers = playerIdentifiers,
-        lobby = nil
+        lobby = nil,
+        isAdmin = function()
+            local admins = s_cfg.admins
+            if #admins ~= 0 then
+                for k,v in pairs(admins) do
+                    if playerIdentifiers["license"] == v["license"] then
+                        return true
+                    end
+                end
+            end
+
+            return false
+        end
     }
 
     SetPlayerRoutingBucket(src, "player_"..source) --set player default lobby
