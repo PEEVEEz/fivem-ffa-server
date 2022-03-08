@@ -13,7 +13,7 @@ s_cfg.map_vote_timer = 1 * 60000
 
 s_cfg.areas = {
     { name = "grove street", coords = vector3(101.54, -1871.81, 24.16) },
-    { name = "satama", coords = vector3(1195.57, -3011.05, 5.9) },
+    { name = "satama", coords = vector3(981.15, -3079.71, 5.9) },
     { name = "pohjonen", coords = vector3(-203.28, 6298.44, 31.49) }
 }
 

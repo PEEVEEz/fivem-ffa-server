@@ -1,5 +1,5 @@
 
-Core.Player.addWeapons = function(area)
+Core.Functions.addWeapons = function(area)
     local playerPed = PlayerPedId()
     local guns = Core.Data.Lobbys[area].guns
     for i=1, #guns do 
@@ -7,18 +7,19 @@ Core.Player.addWeapons = function(area)
     end
 end
 
-Core.Player.removeAllWeapons = function()
+Core.Functions.removeAllWeapons = function()
     local playerPed = PlayerPedId()
     RemoveAllPedWeapons(playerPed)
 end
 
-Core.Player.SetCoords = function(x,y,z,h)
+Core.Functions.Teleport = function(x,y,z,h)
     local playerPed = PlayerPedId()
     SetEntityCoords(playerPed, x, y, z)
+    if not h then return end
     SetEntityHeading(playerPed, h)
 end
 
-Core.Player.SpawnCam = function(bool)
+Core.Functions.SpawnCam = function(bool)
     if bool then
         local coords = c_cfg.default_spawn
         Core.Player.Camera = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", coords.x + 0.2, coords.y + 3.0, coords.z, 0.0,0.0, coords.w / 2, 50.0, false, 0)

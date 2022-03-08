@@ -1,5 +1,5 @@
-Core.UI.Open = function(bool)
-    Core.Player.SpawnCam(bool)
+Core.Functions.UIOpen = function(bool)
+    Core.Functions.SpawnCam(bool)
     SetNuiFocus(bool, bool);
     SendNuiMessage(json.encode({
 		action = "show_ui",

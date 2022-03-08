@@ -8,25 +8,22 @@ end)
 
 RegisterNetEvent('core:cl:lobby:join', function(lobby, coords)
     local playerPed = PlayerPedId()
-    Core.Player.addWeapons(lobby)
-    Core.Player.SpawnCam(false)
+    Core.Functions.addWeapons(lobby)
+    Core.Functions.SpawnCam(false)
 
-    --TODO: Randomize coords
-    Core.Player.SetCoords(coords.x, coords.y, coords.z, 88.73)
-    Core.UI.Open(false)
+    Core.Functions.SpawnToArea(coords.x, coords.y, coords.z)
+    Core.Functions.UIOpen(false)
     Core.Player.onLobby = true
 end)
 
 RegisterNetEvent('core:cl:lobby:changeArea', function(newArea)
     Core.Functions.Notify("Alue vaihdettu!")
-
-    --TODO: Randomize coords
-    Core.Player.SetCoords(newArea.x, newArea.y, newArea.z, 88.73)
+    Core.Functions.SpawnToArea(newArea.x, newArea.y, newArea.z)
 end)
 
 RegisterNetEvent('core:cl:lobby:leave', function()
     if not Core.Player.onLobby then return end
-    Core.Player.removeAllWeapons()
+    Core.Functions.removeAllWeapons()
     Core.Player.onLobby = false
     TriggerEvent('core:cl:player:default_spawn')
 end)

@@ -2,10 +2,9 @@ Core = {}
 Core.Functions = {}
 
 Core.Data = {}
+Core.Data.Blips = {}
 Core.Data.Areas = {}
 Core.Data.Lobbys = {}
-
-Core.UI = {}
 
 Core.Player = {}
 Core.Player.Camera = nil

@@ -10,7 +10,8 @@ RegisterNetEvent('core:cl:player:default_spawn', function(data)
         model = `a_m_m_soucent_04`, --DEFAULT MODELI TÄLLÄ HETKELLÄ
         skipFade = false
     }, function()
-        Core.UI.Open(true)
+        Core.Functions.CreateBlips()
+        Core.Functions.UIOpen(true)
     end)
 end)
 
