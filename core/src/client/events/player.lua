@@ -1,6 +1,9 @@
 
 RegisterNetEvent('core:cl:player:default_spawn', function(data)
     SetMaxWantedLevel(0)
+    NetworkSetFriendlyFireOption(true)
+	SetCanAttackFriendly(PlayerPedId(), true, false)
+
     local coords = c_cfg.default_spawn 
     exports.spawnmanager:spawnPlayer({
         x = coords.x,
