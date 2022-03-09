@@ -100,7 +100,6 @@ export default {
   },
 
   mounted() {
-    console.log(JSON.stringify(this.map_vote));
     this.eventListeners.message = window.addEventListener("message", (e) => {
       const { data } = e;
 

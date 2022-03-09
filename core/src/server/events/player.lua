@@ -1,6 +1,7 @@
 RegisterNetEvent("core:sv:player:joined", function()
     local src = source
 
+    --TODO: Get data from database
     Core.Functions.CreatePlayer(src, GetPlayerName(src))
 
     SetPlayerRoutingBucket(src, "player_" .. source) --set player default lobby
