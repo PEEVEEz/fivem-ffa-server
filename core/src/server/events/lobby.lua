@@ -1,11 +1,8 @@
 
 RegisterNetEvent('core:sv:lobby:join', function(lobby) --Triggeraa tää sittenki joku haluaa joinata
     s_cfg.lobbys[lobby].players[source] = true
-    for _, mapData in pairs(s_cfg.areas) do
-        if mapData.name == s_cfg.lobbys[lobby].area then
-            TriggerClientEvent('core:cl:lobby:join', source, lobby, mapData.coords)
-        end
-    end
+    local coords = Core.Functions.getArea(lobby).coords
+    TriggerClientEvent('core:cl:lobby:join', source, lobby, coords)
     TriggerClientEvent('core:cl:lobby:update', -1, lobby, s_cfg.lobbys[lobby])
     SetPlayerRoutingBucket(source, s_cfg.lobbys[lobby].routingID) 
     Core.Players[source].lobby = lobby

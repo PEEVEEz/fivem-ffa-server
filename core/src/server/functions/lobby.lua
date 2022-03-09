@@ -1,4 +1,14 @@
 
+Core.Functions.getArea = function(lobby)
+    for _, mapData in pairs(s_cfg.areas) do
+        if mapData.name == s_cfg.lobbys[lobby].area then
+            return mapData
+        end
+    end
+
+    return nil
+end
+
 Core.Functions.startMapVote = function(lobby)
     print("Map vote start | Lobby: "..lobby.name)
 
