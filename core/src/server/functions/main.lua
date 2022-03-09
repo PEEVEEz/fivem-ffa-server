@@ -3,7 +3,7 @@ Core.Functions.LoadData = function(cb)
 	local resourceName = GetCurrentResourceName()
 	local Banlist = json.decode(LoadResourceFile(resourceName, dataPath.."banlist.json"))
 	local Admins = json.decode(LoadResourceFile(resourceName, dataPath.."admins.json"))
-	local OneSync = GetConvar('onesync_enabled', false) == 'true'
+	local OneSync = GetConvar("onesync_enabled", false) == "true"
 	
 	if Banlist and Admins and OneSync then
 		s_cfg.ban_list = Banlist
@@ -26,5 +26,5 @@ Core.Functions.Webhook = function(name, message, hook)
 			}, 
 		}
 	}
-	PerformHttpRequest(hook, function(err, text, headers) end, 'POST', json.encode({username = 'FFA', embeds = embeds}), { ['Content-Type'] = 'application/json' })
+	PerformHttpRequest(hook, function(err, text, headers) end, "POST", json.encode({username = "FFA", embeds = embeds}), { ["Content-Type"] = "application/json" })
 end

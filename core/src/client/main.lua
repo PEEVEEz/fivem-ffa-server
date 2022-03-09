@@ -14,7 +14,7 @@ Core.Player.Shooting = false
 
 CreateThread(function()
 	while not NetworkIsPlayerActive(PlayerId()) do Wait(600) end
-	TriggerServerEvent('core:sv:player:joined')
+	TriggerServerEvent("core:sv:player:joined")
     while true do
         local wait = 1200
 		local playerPed = PlayerPedId()
@@ -40,8 +40,8 @@ CreateThread(function()
     end
 end)
 
-RegisterCommand('leave', function()
-	TriggerServerEvent('core:sv:lobby:leave')
+RegisterCommand("leave", function()
+	TriggerServerEvent("core:sv:lobby:leave")
 end)
 
 RegisterCommand("die", function()

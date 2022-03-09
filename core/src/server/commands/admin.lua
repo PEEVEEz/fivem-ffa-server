@@ -1,6 +1,6 @@
 
 
-RegisterCommand('ban', function(source)
+RegisterCommand("ban", function(source)
     local player = Core.Players[source]
 
     if player.isAdmin() then

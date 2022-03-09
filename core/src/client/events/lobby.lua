@@ -1,4 +1,4 @@
-RegisterNetEvent('core:cl:lobby:update', function(lobby, data)
+RegisterNetEvent("core:cl:lobby:update", function(lobby, data)
     if not lobby then 
         Core.Data.Lobbys = data.Lobbys
         Core.Data.Areas = data.Areas
@@ -6,7 +6,7 @@ RegisterNetEvent('core:cl:lobby:update', function(lobby, data)
     print("Data updated")
 end)
 
-RegisterNetEvent('core:cl:lobby:join', function(lobby, coords)
+RegisterNetEvent("core:cl:lobby:join", function(lobby, coords)
     local playerPed = PlayerPedId()
     Core.Functions.addWeapons(lobby)
     Core.Functions.SpawnCam(false)
@@ -16,19 +16,19 @@ RegisterNetEvent('core:cl:lobby:join', function(lobby, coords)
     Core.Player.onLobby = true
 end)
 
-RegisterNetEvent('core:cl:lobby:changeArea', function(newArea)
+RegisterNetEvent("core:cl:lobby:changeArea", function(newArea)
     Core.Functions.Notify("Alue vaihdettu!")
     Core.Functions.SpawnToArea(newArea.x, newArea.y, newArea.z)
 end)
 
-RegisterNetEvent('core:cl:lobby:leave', function()
+RegisterNetEvent("core:cl:lobby:leave", function()
     if not Core.Player.onLobby then return end
     Core.Functions.removeAllWeapons()
     Core.Player.onLobby = false
-    TriggerEvent('core:cl:player:default_spawn')
+    TriggerEvent("core:cl:player:default_spawn")
 end)
 
-RegisterNetEvent('core:cl:lobby:startVote', function(mapVoteTimer)
+RegisterNetEvent("core:cl:lobby:startVote", function(mapVoteTimer)
 	SetNuiFocus(true, false);
 	SendNuiMessage(json.encode({
 		action = "map_vote",
@@ -40,7 +40,7 @@ RegisterNetEvent('core:cl:lobby:startVote', function(mapVoteTimer)
 	}))
 end)
 
-RegisterNetEvent('core:cl:lobby:endVote', function()
+RegisterNetEvent("core:cl:lobby:endVote", function()
 	SetNuiFocus(false, false);
 	SendNuiMessage(json.encode({
 		action = "map_vote",
@@ -54,13 +54,13 @@ end)
 RegisterNUICallback("join_lobby", function(data, cb)
     local lobby = data.lobby
     if not lobby then return end
-    TriggerServerEvent('core:sv:lobby:join', lobby)
+    TriggerServerEvent("core:sv:lobby:join", lobby)
 end)
 
 
-RegisterNUICallback('vote_change_map', function(data, cb)
+RegisterNUICallback("vote_change_map", function(data, cb)
      local map = data.map
      SetNuiFocus(false, false);
      if not map then return end
-     TriggerServerEvent('core:sv:lobby:vote_map', map)
+     TriggerServerEvent("core:sv:lobby:vote_map", map)
 end)
