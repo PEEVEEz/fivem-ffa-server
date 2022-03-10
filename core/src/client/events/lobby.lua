@@ -7,9 +7,7 @@ RegisterNetEvent("core:cl:lobby:update", function(lobby, data)
 end)
 
 RegisterNetEvent("core:cl:lobby:join", function(lobby, coords)
-    local playerPed = PlayerPedId()
     Core.Functions.addWeapons(lobby)
-    Core.Functions.SpawnCam(false)
 
     Core.Functions.SpawnToArea(coords.x, coords.y, coords.z)
     Core.Functions.UIOpen(false)

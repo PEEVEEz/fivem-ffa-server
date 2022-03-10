@@ -32,6 +32,10 @@ Core.Functions.CreatePlayer = function(src, playerName)
         return false
     end
 
+    player.ban = function()
+        print(player.name)
+    end
+
     if not Core.Players[src] then
         Core.Players[src] = player
     end

@@ -1,26 +1,23 @@
 RegisterNetEvent("core:sv:player:joined", function()
-    local src = source
-
     --TODO: Get data from database
-    Core.Functions.CreatePlayer(src, GetPlayerName(src))
+    Core.Functions.CreatePlayer(source, GetPlayerName(source))
 
-    SetPlayerRoutingBucket(src, "player_" .. source) --set player default lobby
-    TriggerClientEvent("core:cl:lobby:update", src, nil, {Lobbys = s_cfg.lobbys, Areas = s_cfg.areas})
-    TriggerClientEvent("core:cl:player:default_spawn", src)
+    SetPlayerRoutingBucket(source, "player_" .. source) --set player default lobby
+    TriggerClientEvent("core:cl:lobby:update", source, nil, {Lobbys = s_cfg.lobbys, Areas = s_cfg.areas})
+    TriggerClientEvent("core:cl:player:default_spawn", source)
 end)
 
 AddEventHandler("playerDropped", function(reason)
-    local playerName = Core.Players[source].name
+    local player = Core.Players[source]
     local identifiers = Core.Functions.GetPlayerIdentifiers(source)
     Core.Functions.Webhook(
-        playerName .. " Left the server. IP: ",
+        player.name .. " Left the server. IP: ",
         identifiers["ip"] .. "\n DC: " .. identifiers["discord"] .. " \n STEAM: " .. identifiers["steam"] .. " \n Reason: " .. reason,
         s_cfg.webhooks.leave
     )
 
-    local playerLobby = Core.Players[source].lobby
-    if playerLobby then
-        s_cfg.lobbys[playerLobby].players[source] = nil
+    if player.lobby then
+        s_cfg.lobbys[player.lobby].players[source] = nil
     end
     Core.Players[source] = nil
 end)
