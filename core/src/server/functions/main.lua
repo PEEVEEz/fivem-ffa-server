@@ -14,6 +14,17 @@ Core.Functions.LoadData = function(cb)
 	end
 end
 
+Core.Functions.RegisterCommand = function(name, adminCommand, cb)
+	RegisterCommand(name, function(source, args)
+		if adminCommand and not ((Core.Players[source] ~= nil and Core.Players[source].isAdmin()) == true or source <= 0) then
+			print("Pelaaja ei ole admin")
+			return
+		end
+
+		cb(source, args)
+	end)
+end
+
 Core.Functions.Webhook = function(name, message, hook)
 	if hook:len() == 0 then return print("^1[ERROR]^7 Webhookkia ei löytynyt") end
 	local embeds = {  
